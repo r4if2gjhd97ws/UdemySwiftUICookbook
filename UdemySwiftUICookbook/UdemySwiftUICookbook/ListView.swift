@@ -35,8 +35,12 @@ struct ListView: View {
     var body: some View {
         VStack {
             List(1...20, id: \.self) { index in
-                Text("\(index)")
+                HStack {
+                    Text("\(index)")
+                }
+                    .listRowSeparator(.hidden)
             }
+
             List(friendsA, id: \.id) { friend in
                 Text("\(friend.name)")
             }

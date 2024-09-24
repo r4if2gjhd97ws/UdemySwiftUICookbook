@@ -40,11 +40,13 @@ struct EditableTaskListView: View {
                     ForEach(tasks, id: \.self) { task in
                         Text(task)
                     }
+                    
                     // セルを左スワイプで”削除”ボタンを表示
                     .onDelete(perform: deleteTask(at:))
                     // セルを入れ替え可能にする
                     .onMove(perform: moveTask(from: to:))
                 }
+                
                     .listStyle(PlainListStyle())
                     .toolbar {
                     //並べ替え編集ボタン
