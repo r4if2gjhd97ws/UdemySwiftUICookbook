@@ -7,26 +7,26 @@
 
 import SwiftUI
 
-struct Place: Identifiable {
+struct City: Identifiable {
     let id = UUID()
     let name: String
     let photo: String
 }
 
-func getPlaces() -> [Place] {
+func getCities() -> [City] {
     return [
-        Place(name: "Denver", photo: "denver"),
-        Place(name: "Newyork", photo: "ny"),
-        Place(name: "Costa Rica", photo: "costa-rica"),
-        Place(name: "Seattle", photo: "seattle"),
-        Place(name: "Cuba", photo: "cuba")
+        City(name: "Denver", photo: "denver"),
+        City(name: "Newyork", photo: "ny"),
+        City(name: "Costa Rica", photo: "costa-rica"),
+        City(name: "Seattle", photo: "seattle"),
+        City(name: "Cuba", photo: "cuba")
     ]
 }
 
 struct FilterSearchableListView: View {
 
     @State private var searchText: String = ""
-    @State private var places: [Place] = getPlaces()
+    @State private var places: [City] = getCities()
 
     var body: some View {
         NavigationView {
@@ -47,7 +47,7 @@ struct FilterSearchableListView: View {
                         $0.name.lowercased().hasPrefix(newValue.lowercased())
                     }
                 } else {
-                    places = getPlaces()
+                    places = getCities()
                 }
             })
                 .navigationTitle("Places")

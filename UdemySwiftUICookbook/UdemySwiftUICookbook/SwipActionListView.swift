@@ -10,7 +10,7 @@ import SwiftUI
 struct SwipActionListView: View {
 
     @State private var searchText: String = ""
-    @State private var places: [Place] = getPlaces()
+    @State private var places: [City] = getCities()
 
     var body: some View {
         NavigationView {
@@ -28,11 +28,21 @@ struct SwipActionListView: View {
 
                     } label: {
                         Label("Heart", systemImage: "heart.circle")
+                    }.tint(.yellow)
+                }
+                    .swipeActions(edge: .trailing) {
+                    Button {
+
+                    } label: {
+                        Label("Archive", systemImage: "archivebox.circle.fill")
                     }
+                        .tint(.teal)
+
                 }
             }.listStyle(.plain)
                 .navigationTitle("Places")
         }
+
     }
 }
 
