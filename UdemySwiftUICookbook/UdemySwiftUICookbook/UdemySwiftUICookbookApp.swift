@@ -11,7 +11,7 @@ import SwiftUI
 struct UdemySwiftUICookbookApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            InfiniteScrollingListView()
         }
     }
 }

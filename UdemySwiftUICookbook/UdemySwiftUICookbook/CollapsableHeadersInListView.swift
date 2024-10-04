@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct Place: Identifiable {
     let id = UUID()
     let name: String
@@ -17,12 +16,50 @@ struct Place: Identifiable {
 struct Hike: Identifiable {
     let id = UUID()
     let name: String
-    
 }
 
+private func getAllPlaces() -> [Place] {
+    return [
+            .init(name: "Tokyo", hikes: [.init(name: "Shinjuku"), .init(name: "Kokubunji")]),
+            .init(name: "Osaka", hikes: [.init(name: "Kodama"), .init(name: "Kodama")]),
+    ]
+}
+
+
 struct CollapsableHeadersInListView: View {
+
+    @State private var places: [Place] = getAllPlaces()
+
+    @State private var selectedPlace: Place?
+    @State private var expanded = false
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List(places) { place in
+            VStack(alignment: .leading) {
+
+                HStack {
+                    Text(place.name)
+                        .fontWeight(.bold)
+                        .padding(.bottom, 10)
+                    Spacer()
+                    Image(systemName: expanded ? "chevron.down" : "chevron.right")
+                }
+                    .onTapGesture {
+                    expanded.toggle()
+                    selectedPlace = expanded ? place : nil
+                }
+
+
+                if selectedPlace?.name == place.name {
+
+                    ForEach(place.hikes) { hike in
+                        Text(hike.name)
+                    }
+
+                }
+
+            }
+        }
     }
 }
 
